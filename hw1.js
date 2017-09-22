@@ -72,6 +72,6 @@
     };
     const taskDiv6 = taskDiv.cloneNode(true);
     message = 'task 3.2</br>Result: ' + utils.getOdd();
-    taskDiv5.innerHTML = message;
-    document.body.appendChild(taskDiv5);
+    taskDiv6.innerHTML = message;
+    document.body.appendChild(taskDiv6);
 })();
