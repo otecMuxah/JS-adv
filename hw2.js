@@ -1,11 +1,6 @@
 (function () {
     // task4.1
-    const getObject = (name, age) => {
-        return {
-            name: name,
-            age: age
-        };
-    };
+    const getObject = (name, age) => ({name,age});
     getObject('Vasya', 10);
     // for some reason it give error when i try like this "const getObject = (name, age) => {name: name, age: age};"
 
@@ -97,7 +92,7 @@
         constructor(rows = 3, columns = 3) {
             this.rows = rows;
             this.columns = columns;
-            this.matrix = (function () {
+            this.matrix = (() => {
                 let result = [];
                 for (let i = 0; i < rows; i++) {
                     let temp = [];
