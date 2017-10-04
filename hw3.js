@@ -27,31 +27,64 @@ const promise1 = new Prom();
 // promise1.resolve('test');
 
 //task 6.3
-$('.button').on('click', function () {
-    promise1.resolve($('.input').val());
-});
+https://codepen.io/superduper77/pen/zEwMzM
 
 //task 6.4 
-function getPromise(url) {
-    const xhr = new XMLHttpRequest(),
-        promise = new Promise((resolve, reject) => {
-            xhr.addEventListener('readystatechange', () => {
+https://codepen.io/superduper77/pen/zEzWLM
 
-                if (xhr.readyState != 4) return;
+// $(function () {
+//     let userList,
+//         userListDOM = $('ul.user-list');
 
-                if (xhr.status != 200) {
-                    reject(xhr.status);
-                } else {
-                    resolve(xhr.responseText);
-                }
-            });
-        });
+//     fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json()).then(data => {
+//         userList = data;
+//     });
 
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'text/plain');
-    xhr.send();
-
-    return promise;
-}
-
+//     (function createList(userList) {
+//         userListDOM.empty();
+//         $.each(userList, (i) => {
+//             let li = $('<li/>').appendTo(userListDOM);
+//             let name = $('<a/>').text(userList[i].id).appendTo(li);
+//             let email = $('<a/>').text(userList[i].title).appendTo(li);
+//         });
+//     })(userList);
 // });
+
+
+//task 6.5
+(function () {
+    let result = [];
+    function getPromise(url) {
+        const xhr = new XMLHttpRequest(),
+            promise = new Promise((resolve, reject) => {
+                xhr.addEventListener('readystatechange', () => {
+
+                    if (xhr.readyState != 4) return;
+
+                    if (xhr.status != 200) {
+                        reject(xhr.status);
+                    } else {
+                        resolve(xhr.responseText);
+                    }
+                });
+            });
+
+        xhr.open('GET', url);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+        xhr.send();
+
+        return promise;
+    }
+
+
+    
+    Promise.all([
+        getPromise('https://jsonplaceholder.typicode.com/posts'),
+        getPromise('https://jsonplaceholder.typicode.com/users')
+    ])
+        .then(response => {
+            response.map(item=>result.push(JSON.parse(item)));
+            console.log("Posts - ", result[0].length);
+            console.log("Users - ", result[1].length);
+        });
+})();
