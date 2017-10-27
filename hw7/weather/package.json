@@ -8,8 +8,5 @@
     "start": "node main.js"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "jquery": "^3.2.1"
-  }
+  "license": "ISC"
 }

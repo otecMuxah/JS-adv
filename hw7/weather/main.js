@@ -7,6 +7,6 @@ http.get('http://wttr.in/~kharkov', (res) => {
     let result = "";
     res.on('data', data => result = data);
     res.on('end', ()=> {
-        fs.writeFileSync('index.html', result)
+        fs.writeFile('index.html', result)
     })
  });
