@@ -2,6 +2,11 @@
 
 // https://plnkr.co/edit/KyNLf2pt8Co8BDm3EYtO?p=preview
 
+
+// task 6.2
+// https://github.com/otecMuxah/JS-adv/tree/master/hw6
+
+// RESULT IS HERE - https://rawgit.com/otecMuxah/JS-adv/master/hw6/index.html
 const getData62 = async () => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     const data = await response.json();
