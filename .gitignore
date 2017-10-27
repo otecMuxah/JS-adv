@@ -4,3 +4,4 @@
 */node_modules
 .idea/JS-adv.iml
 *.xml
+*/someDir
