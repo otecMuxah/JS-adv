@@ -9,4 +9,4 @@ read("name.txt1").then(data => console.log(data)).catch(err => console.log("err!
 // task 4
 const file = require('file-system');
 const date = new Date().toDateString();
-file.writeFileSync('someDir/date.txt', date);
+file.writeFile('someDir/date.txt', date);
