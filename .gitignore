@@ -5,3 +5,5 @@
 .idea/JS-adv.iml
 *.xml
 */someDir
+*/dist
+/node_modules
