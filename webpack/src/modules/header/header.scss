@@ -1,3 +1,11 @@
 .header {
-    background: yellow;
+    background: mix(blue,yellow);
+}
+$colors: lightblue,blue,darkblue,violet;
+ul {
+    @for $i from 1 through length($colors) {
+        li:nth-child(#{$i}) {
+            background: nth($colors,$i);
+        }
+    }
 }

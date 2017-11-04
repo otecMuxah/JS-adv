@@ -3,6 +3,27 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const textPlugin = require('extract-text-webpack-plugin');
+const args = require('yargs').argv;
+
+const plugins = [
+    new HtmlWebpackPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
+    new webpack.HotModuleReplacementPlugin()
+];
+
+let styleLoader = ['style-loader','css-loader','sass-loader']
+
+if (args.env && args.env.style) {
+    plugins.push(new textPlugin({
+        filename: 'style.css'
+    }));
+
+    styleLoader = textPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader','sass-loader']
+    })
+}
+
 
 module.exports = {
     entry: {
@@ -30,20 +51,18 @@ module.exports = {
 
             {
                 test: /\.s?css$/,
-                use: textPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader','sass-loader']
-                })
+                use: styleLoader
             }
         ]
 
     },
 
-    plugins: [
-        new HtmlWebpackPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
-        new textPlugin({
-            filename: 'style.css'
-        })
-    ]
+    plugins,
+
+    devServer: {
+        contentBase: path.resolve(__dirname,'dist'),
+        publicPath: '/',
+        port: 9000,
+        hot: !(args.env && args.env.style)
+    }
 };
