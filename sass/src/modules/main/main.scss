@@ -1,0 +1,14 @@
+@import "func";
+@import "mixin";
+
+.div {
+    color: getDarken(#fafafa);
+}
+
+a {
+    @include triangle('bottom');
+}
+
+@for $i from 1 through 10 {
+    .list_item#{$i} { width: 10px * $i; background: rgb(10*$i,10*$i,10*$i)}
+}
