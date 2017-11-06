@@ -1,15 +1,9 @@
-const hello = () => console.log("Hello");
-
-const list = [1,2,3];
-const copyList = [...list];
-
-
 import { header } from './modules/header';
+import { main } from './modules/main';
 import footer from './modules/footer';
 
 const $ = require('jquery');
 
-console.log($('div'));
-
 document.body.appendChild(header());
+document.body.appendChild(main());
 document.body.appendChild(footer());

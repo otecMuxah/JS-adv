@@ -1,5 +1,7 @@
-const http = require('http')
-const fs = require('fs')
+/*jshint esversion: 6 */
+
+const http = require('http');
+const fs = require('fs');
 
 http.get('http://wttr.in/~kharkov', (res) => {
     if (res.statusCode !== 200) throw new Error(res.statusMessage);
@@ -7,6 +9,6 @@ http.get('http://wttr.in/~kharkov', (res) => {
     let result = "";
     res.on('data', data => result = data);
     res.on('end', ()=> {
-        fs.writeFile('index.html', result)
-    })
+        fs.writeFile('index.html', result);
+    });
  });

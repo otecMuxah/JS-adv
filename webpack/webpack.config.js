@@ -11,7 +11,7 @@ const plugins = [
     new webpack.HotModuleReplacementPlugin()
 ];
 
-let styleLoader = ['style-loader','css-loader','sass-loader']
+let styleLoader = ['style-loader','css-loader','sass-loader'];
 
 if (args.env && args.env.style) {
     plugins.push(new textPlugin({
@@ -21,7 +21,7 @@ if (args.env && args.env.style) {
     styleLoader = textPlugin.extract({
         fallback: 'style-loader',
         use: ['css-loader','sass-loader']
-    })
+    });
 }
 
 
