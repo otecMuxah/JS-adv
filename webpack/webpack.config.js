@@ -15,7 +15,7 @@ let styleLoader = ['style-loader','css-loader','sass-loader'];
 
 if (args.env && args.env.style) {
     plugins.push(new textPlugin({
-        filename: 'style.css'
+        filename: 'style-[hash].css'
     }));
 
     styleLoader = textPlugin.extract({
