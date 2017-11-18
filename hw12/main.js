@@ -23,34 +23,54 @@ const getRandomUsers = (users) => {
     return users.slice(middleUser, length);
 };
 
-const testObj = {
-    equal(result) {
-        if (this.input === result) console.log('Success');
-        else console.error(`${this.input} not equals to ${result}` );
-    },
-    defined() {
-        if (this.input !== undefined) console.log('Success');
-        else console.error(`${this.input} is not defined` );
-    },
-};
 
-const test = (input) => {
-    testObj.input = input;
-    return testObj;
-};
+(() => {
+    const testObj = {
+        equal(result) {
+            if (this.input === result) console.log('Success');
+            else console.error(`${this.input} not equals to ${result}`);
+        },
+        defined() {
+            if (this.input !== undefined) console.log('Success');
+            else console.error(`${this.input} is not defined`);
+        },
+    };
+
+    const test = (input) => {
+        testObj.input = input;
+        return testObj;
+    };
+
+
 //test 1
-let originalGetDay = getDay;
-originalGetDay = () => {
-    "use strict";
-    return 22
-};
-test(getDay()).equal(22);
+    let originalGetDay = getDay;
+    getDay.fixedDate = () => {
+        return 22;
+    };
+
+    test(getDay.fixedDate()).equal(22);
+
+
 //test2
-let result = {};
-let testAdult = getAdultUsers(users);
-result.len = testAdult <= users.length;
-if (result[0]) {
-    result.firstUserAge = result[0] > 18;
-    test(result.firstUserAge).equal(true);
-}
-test(result.len).equal(true);
+    const testUsers = [{age: 4}, {age: 40}];
+    let testAdult = getAdultUsers(testUsers);
+    let testNoAttr = getAdultUsers();
+
+    test(testAdult[0].age).equal(40);
+    test(testNoAttr.length).equal(0);
+
+
+    // test 3
+    const origMathRandom = Math.random;
+
+    Math.random = () => {
+        return 0.4;
+    };
+
+    test(getRandomUsers()).equal(false);
+    test(getRandomUsers(testUsers)[0].age).equal(40);
+
+    Math.random = origMathRandom;
+})();
+
+
