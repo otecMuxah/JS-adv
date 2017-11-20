@@ -47,7 +47,8 @@ const getRandomUsers = (users, arg) => {
     getDay.fixedDate = () => {
         return 22;
     };
-
+    const range = 0 > getDay() > 32;
+    test(range).equal(true);
     test(typeof getDay()).equal('number');
     test(getDay.fixedDate()).equal(22);
 
