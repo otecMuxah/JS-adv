@@ -43,15 +43,10 @@ const getRandomUsers = (users, arg) => {
 
 
 //test 1
-    let originalGetDay = getDay;
-    getDay.fixedDate = () => {
-        return 22;
-    };
-    const range = 0 > getDay() > 32;
-    test(range).equal(true);
-    test(typeof getDay()).equal('number');
-    test(getDay.fixedDate()).equal(22);
 
+    const range = 0 < getDay() && getDay() < 32;
+    test(typeof getDay()).equal('number');
+    test(range).equal(true);
 
 //test2
     const testUsers = [{age: 4}, {age: 40}];
